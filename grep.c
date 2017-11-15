@@ -1,8 +1,7 @@
+#include "grep.h"
 #include <stdio.h>
-#define MAXLINE 1000
 
-int get_line(char line[], int max);
-int strindex(char source[], char searchfor[]);
+#define MAXLINE 1000
 
 char pattern[] = "ould";
 
@@ -17,5 +16,3 @@ int main(void) {
     }
   return found;
 }
-
-
