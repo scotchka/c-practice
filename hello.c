@@ -1,10 +1,2 @@
-#include <stdio.h>
+#include <ctype.h>
 
-
-int main()
-
-{
-
-
-	printf("%f\n", 1/2);
-}
