@@ -7,13 +7,20 @@ char *lineptr[MAXLINES];
 
 int readlines(char *[], int);
 void writelines(char *[], int);
-void qsort(char *[], int, int);
 
-int main(void) {
+void qsort(void *[], int, int, int (*comp)(void *, void *));
+int numcmp(const char *, const char *);
+
+int main(int argc, char *argv[]) {
   int nlines;
+  int numeric = 0;
+
+  if (argc > 1 && strcmp(argv[1], "-n") == 0)
+    numeric = 1;
 
   if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {
-    qsort(lineptr, 0, nlines - 1);
+    qsort((void **)lineptr, 0, nlines - 1,
+          (int (*)(void *, void *))(numeric ? numcmp : strcmp));
     writelines(lineptr, nlines);
     return 0;
   } else {
