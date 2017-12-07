@@ -12,7 +12,7 @@ struct rect {
 };
 
 int main(void) {
-  struct rect screen;
+  struct rect screen, *pp = &screen;
   struct point middle;
   struct point makepoint(int, int);
   struct point addpoint(struct point, struct point);
@@ -20,19 +20,19 @@ int main(void) {
   struct rect canon_rect(struct rect);
 
   screen.pt2 = makepoint(0, 0);
-  screen.pt1 = makepoint(XMAX, YMAX);
+  pp->pt1 = makepoint(XMAX, YMAX);
 
   screen = canon_rect(screen);
 
   printf("screen: lower left (%d, %d), upper right (%d, %d)\n", screen.pt1.x,
-         screen.pt1.y, screen.pt2.x, screen.pt2.y);
+         screen.pt1.y, pp->pt2.x, screen.pt2.y);
 
   middle = makepoint((screen.pt1.x + screen.pt2.x) / 2,
                      (screen.pt1.y + screen.pt2.y) / 2);
 
   printf("middle: (%d, %d)\n", middle.x, middle.y);
 
-  struct point sum = addpoint(screen.pt2, middle);
+  struct point sum = addpoint(pp->pt2, middle);
 
   printf("middle + max: (%d, %d)\n", sum.x, sum.y);
 
