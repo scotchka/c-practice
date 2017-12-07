@@ -39,6 +39,11 @@ int main(void) {
   printf("middle in screen? %d\n", point_in_rect(middle, screen));
   printf("sum in screen? %d\n", point_in_rect(sum, screen));
 
+  struct point points[] = {1,2,3,4};
+
+  printf("(%d, %d)\n", (points+1)->x, (points+1)->y);
+  printf("(%d, %d)\n", points[1].x, points[1].y);
+
   return 0;
 }
 
