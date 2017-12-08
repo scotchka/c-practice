@@ -2,19 +2,21 @@
 #include <stdio.h>
 #include <string.h>
 #define MAXWORD 100
-struct tnode {
+typedef struct tnode *Treeptr;
+
+typedef struct tnode {
   char *word;
   int count;
-  struct tnode *left;
-  struct tnode *right;
-};
+  Treeptr left;
+  Treeptr right;
+} Treenode;
 
-struct tnode *addtree(struct tnode *, char *);
-void treeprint(struct tnode *);
+Treeptr addtree(Treeptr, char *);
+void treeprint(Treeptr);
 int getword(char *, int);
 
 int main(void) {
-  struct tnode *root;
+  Treeptr root;
   char word[MAXWORD];
 
   root = NULL;
@@ -25,10 +27,10 @@ int main(void) {
   return 0;
 }
 
-struct tnode *talloc(void);
+Treeptr talloc(void);
 char *str_dup(char *);
 
-struct tnode *addtree(struct tnode *p, char *w) {
+Treeptr addtree(Treeptr p, char *w) {
   int cond;
 
   if (p == NULL) {
@@ -45,7 +47,7 @@ struct tnode *addtree(struct tnode *p, char *w) {
   return p;
 }
 
-void treeprint(struct tnode *p) {
+void treeprint(Treeptr p) {
   if (p != NULL) {
     treeprint(p->left);
     printf("%4d %s\n", p->count, p->word);
@@ -55,9 +57,7 @@ void treeprint(struct tnode *p) {
 
 #include <stdlib.h>
 
-struct tnode *talloc(void) {
-  return (struct tnode *)malloc(sizeof(struct tnode));
-}
+Treeptr talloc(void) { return (Treeptr)malloc(sizeof(Treenode)); }
 
 char *str_dup(char *s) {
   char *p;
