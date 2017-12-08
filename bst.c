@@ -33,7 +33,7 @@ struct tnode *addtree(struct tnode *p, char *w) {
 
   if (p == NULL) {
     p = talloc();
-    p->word = strdup(w);
+    p->word = str_dup(w);
     p->count = 1;
     p->left = p->right = NULL;
   } else if ((cond = strcmp(w, p->word)) == 0)
